@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{3FB95437-1740-4C68-9F7D-401B629B3531}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Vectrasm</RootNamespace>
+    <AssemblyName>Vectrasm</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="antlr.sh" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Antlr4.Runtime">
+      <HintPath>Antlr4.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Parser_Generated\AsmBaseListener.cs" />
+    <Compile Include="Parser_Generated\AsmBaseVisitor.cs" />
+    <Compile Include="Parser_Generated\AsmLexer.cs" />
+    <Compile Include="Parser_Generated\AsmListener.cs" />
+    <Compile Include="Parser_Generated\AsmParser.cs" />
+    <Compile Include="Parser_Generated\AsmVisitor.cs" />
+    <Compile Include="AsmVisitor.cs" />
+    <Compile Include="ExpressionVisitor.cs" />
+    <Compile Include="DataListVisitor.cs" />
+    <Compile Include="Opcode.cs" />
+    <Compile Include="ArgumentVisitor.cs" />
+    <Compile Include="Argument.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Parser_Generated\Asm.tokens" />
+    <None Include="Parser_Generated\AsmLexer.tokens" />
+    <None Include="Asm.g4" />
+    <None Include="antlr.sh" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
